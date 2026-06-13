@@ -11,14 +11,17 @@ const {
 } = siteContent
 
 export const metadata: Metadata = {
-	title,
+	title: {
+		default: '逐码 - CodePursue',
+		template: '%s | 逐码'
+	},
 	description,
 	openGraph: {
-		title,
+		title: '逐码 - CodePursue',
 		description
 	},
 	twitter: {
-		title,
+		title: '逐码 - CodePursue',
 		description
 	}
 }
