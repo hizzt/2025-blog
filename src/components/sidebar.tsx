@@ -93,30 +93,6 @@ export default function Sidebar() {
 				animate={{ opacity: 1, x: 0 }}
 				className='card relative p-6'
 			>
-				<div className='flex items-center gap-4'>
-					<Link href='/'>
-						<Image
-							src='/images/avatar.png'
-							alt='avatar'
-							width={64}
-							height={64}
-							className='rounded-full'
-							style={{ boxShadow: '0 8px 16px -4px #E2D9CE' }}
-						/>
-					</Link>
-					<div>
-						<div className='text-secondary text-sm'>{greeting}</div>
-						<div className='font-averia text-xl font-medium'>I'm {username}</div>
-					</div>
-				</div>
-			</motion.div>
-
-			<motion.div
-				initial={{ opacity: 0, x: -20 }}
-				animate={{ opacity: 1, x: 0 }}
-				transition={{ delay: 0.1 }}
-				className='card relative p-6'
-			>
 				<Clock />
 			</motion.div>
 
