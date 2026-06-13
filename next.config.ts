@@ -2,6 +2,7 @@ import { NextConfig } from 'next'
 import { codeInspectorPlugin } from 'code-inspector-plugin'
 
 const nextConfig: NextConfig = {
+	output: 'standalone',
 	devIndicators: false,
 	reactStrictMode: false,
 	reactCompiler: true,
@@ -45,6 +46,11 @@ const nextConfig: NextConfig = {
 				source: '/en',
 				destination: '/',
 				permanent: true
+			},
+			{
+				source: '/',
+				destination: '/blog',
+				permanent: false
 			}
 		]
 	}
