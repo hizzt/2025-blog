@@ -87,26 +87,26 @@ export default function Sidebar() {
 	const beian = siteContent.beian
 
 	return (
-		<aside className='w-[260px] shrink-0 space-y-4 max-lg:hidden'>
+		<aside className='w-[340px] shrink-0 space-y-6 max-lg:hidden'>
 			<motion.div
 				initial={{ opacity: 0, x: -20 }}
 				animate={{ opacity: 1, x: 0 }}
-				className='card p-5'
+				className='card p-6'
 			>
 				<div className='flex items-center gap-4'>
 					<Link href='/'>
 						<Image
 							src='/images/avatar.png'
 							alt='avatar'
-							width={56}
-							height={56}
+							width={64}
+							height={64}
 							className='rounded-full'
 							style={{ boxShadow: '0 8px 16px -4px #E2D9CE' }}
 						/>
 					</Link>
 					<div>
 						<div className='text-secondary text-sm'>{greeting}</div>
-						<div className='font-averia text-lg font-medium'>I'm {username}</div>
+						<div className='font-averia text-xl font-medium'>I'm {username}</div>
 					</div>
 				</div>
 			</motion.div>
@@ -115,7 +115,7 @@ export default function Sidebar() {
 				initial={{ opacity: 0, x: -20 }}
 				animate={{ opacity: 1, x: 0 }}
 				transition={{ delay: 0.1 }}
-				className='card p-5'
+				className='card p-6'
 			>
 				<Clock />
 			</motion.div>
@@ -124,7 +124,7 @@ export default function Sidebar() {
 				initial={{ opacity: 0, x: -20 }}
 				animate={{ opacity: 1, x: 0 }}
 				transition={{ delay: 0.2 }}
-				className='card p-4'
+				className='card p-5'
 			>
 				<Calendar />
 			</motion.div>

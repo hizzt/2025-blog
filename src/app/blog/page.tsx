@@ -327,7 +327,7 @@ export default function BlogPage() {
 				}}
 			/>
 
-			<div className='flex justify-center gap-8 px-6 pt-24 max-sm:px-4 max-sm:pt-20'>
+			<div className='flex justify-start gap-8 px-6 pt-24 max-sm:px-4 max-sm:pt-20'>
 				<Sidebar />
 
 				<div className='flex min-w-0 flex-1 flex-col items-center gap-6'>
