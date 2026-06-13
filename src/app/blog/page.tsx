@@ -475,7 +475,7 @@ export default function BlogPage() {
 				animate={{ opacity: 1, scale: 1 }}
 				className='absolute top-4 right-6 flex items-center gap-3 max-sm:hidden'>
 				<div className='bg-card rounded-xl border px-6 py-2 text-sm backdrop-blur-sm'>
-					逐码 - CodePursue
+					欢迎来到：逐码 - 个人技术研习园地
 				</div>
 			</motion.div>
 
