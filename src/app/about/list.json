@@ -1,5 +1,5 @@
 {
 	"title": "关于本站",
 	"description": "逐码个人技术研习园地 - CodePursue",
-	"content": "## 网站介绍\n\n欢迎来到逐码个人技术研习园地（CodePursue）。\n\n本站是一个专注于技术学习与分享的个人博客，记录在软件开发过程中的思考、探索与实践经验。\n\n## 技术栈\n\n- Next.js + React\n- TypeScript\n- Tailwind CSS\n- Cloudflare Workers\n\n## 联系方式\n\n如有技术交流或合作意向，欢迎通过邮件联系。"
+	"content": "## 简介\n\n欢迎来到逐码个人技术研习园地（CodePursue）。\n\n本站专注于技术学习与分享，记录软件开发过程中的思考、探索与实践经验。\n\n## 技术栈\n\n- Next.js + React\n- TypeScript\n- Tailwind CSS\n- Cloudflare Workers\n\n## 联系方式\n\n如有技术交流或合作意向，欢迎通过邮件联系。"
 }

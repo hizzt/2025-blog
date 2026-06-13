@@ -13,7 +13,6 @@ import ShortLineSVG from '@/svgs/short-line.svg'
 import { useBlogIndex, type BlogIndexItem } from '@/hooks/use-blog-index'
 import { useCategories } from '@/hooks/use-categories'
 import { useReadArticles } from '@/hooks/use-read-articles'
-import JuejinSVG from '@/svgs/juejin.svg'
 import { useAuthStore } from '@/hooks/use-auth'
 import { useConfigStore } from '@/app/(home)/stores/config-store'
 import { readFileAsText } from '@/lib/file-utils'
@@ -22,6 +21,7 @@ import { saveBlogEdits } from './services/save-blog-edits'
 import { Check } from 'lucide-react'
 import { BlogCoverHoverPreview, useBlogCoverHover } from './components/blog-cover-hover'
 import { CategoryModal } from './components/category-modal'
+import Sidebar from '@/components/sidebar'
 
 type DisplayMode = 'day' | 'week' | 'month' | 'year' | 'category'
 
@@ -327,36 +327,39 @@ export default function BlogPage() {
 				}}
 			/>
 
-			<div className='flex flex-col items-center justify-center gap-6 px-6 pt-24 max-sm:pt-24'>
-				{items.length > 0 && (
-					<motion.div
-						initial={{ opacity: 0, scale: 0.6 }}
-						animate={{ opacity: 1, scale: 1 }}
-						className='card btn-rounded relative mx-auto flex items-center gap-1 p-1 max-sm:hidden'>
-						{[
-							{ value: 'day', label: '日' },
-							{ value: 'week', label: '周' },
-							{ value: 'month', label: '月' },
-							{ value: 'year', label: '年' },
-							...(enableCategories ? ([{ value: 'category', label: '分类' }] as const) : [])
-						].map(option => (
-							<motion.button
-								key={option.value}
-								whileHover={{ scale: 1.05 }}
-								whileTap={{ scale: 0.95 }}
-								onClick={() => setDisplayMode(option.value as DisplayMode)}
-								className={cn(
-									'btn-rounded px-3 py-1.5 text-xs font-medium transition-all',
-									displayMode === option.value ? 'bg-brand text-white shadow-sm' : 'text-secondary hover:text-brand hover:bg-white/60'
-								)}>
-								{option.label}
-							</motion.button>
-						))}
-					</motion.div>
-				)}
+			<div className='flex justify-center gap-8 px-6 pt-24 max-sm:px-4 max-sm:pt-20'>
+				<Sidebar />
 
-				{groupKeys.map((groupKey, index) => {
-					const group = groupedItems[groupKey]
+				<div className='flex min-w-0 flex-1 flex-col items-center gap-6'>
+					{items.length > 0 && (
+						<motion.div
+							initial={{ opacity: 0, scale: 0.6 }}
+							animate={{ opacity: 1, scale: 1 }}
+							className='card btn-rounded relative mx-auto flex items-center gap-1 p-1 max-sm:hidden'>
+							{[
+								{ value: 'day', label: '日' },
+								{ value: 'week', label: '周' },
+								{ value: 'month', label: '月' },
+								{ value: 'year', label: '年' },
+								...(enableCategories ? ([{ value: 'category', label: '分类' }] as const) : [])
+							].map(option => (
+								<motion.button
+									key={option.value}
+									whileHover={{ scale: 1.05 }}
+									whileTap={{ scale: 0.95 }}
+									onClick={() => setDisplayMode(option.value as DisplayMode)}
+									className={cn(
+										'btn-rounded px-3 py-1.5 text-xs font-medium transition-all',
+										displayMode === option.value ? 'bg-brand text-white shadow-sm' : 'text-secondary hover:text-brand hover:bg-white/60'
+									)}>
+									{option.label}
+								</motion.button>
+							))}
+						</motion.div>
+					)}
+
+					{groupKeys.map((groupKey, index) => {
+						const group = groupedItems[groupKey]
 					if (!group) return null
 
 					return (
@@ -450,24 +453,20 @@ export default function BlogPage() {
 					)
 				})}
 				{items.length > 0 && (
-					<div className='text-center'>
-						<motion.a
+					<div className='pb-8 text-center'>
+						<motion.div
 							initial={{ opacity: 0, scale: 0.6 }}
 							animate={{ opacity: 1, scale: 1 }}
-							whileHover={{ scale: 1.05 }}
-							whileTap={{ scale: 0.95 }}
-							href='https://juejin.cn/user/2427311675422382/posts'
-							target='_blank'
-							className='card text-secondary static inline-flex items-center gap-2 rounded-xl px-4 py-2 text-xs'>
-							<JuejinSVG className='h-4 w-4' />
-							更多
-						</motion.a>
+							className='text-secondary text-xs'>
+							共 {items.length} 篇文章
+						</motion.div>
 					</div>
 				)}
+				</div>
 			</div>
 
 			<div className='pt-12'>
-				{!loading && items.length === 0 && <div className='text-secondary py-6 text-center text-sm'>暂无文章</div>}
+				{!loading && items.length === 0 && <div className='text-secondary py-6 text-center text-sm'>暂无内容</div>}
 				{loading && <div className='text-secondary py-6 text-center text-sm'>加载中...</div>}
 			</div>
 
