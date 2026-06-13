@@ -91,7 +91,7 @@ export default function Sidebar() {
 			<motion.div
 				initial={{ opacity: 0, x: -20 }}
 				animate={{ opacity: 1, x: 0 }}
-				className='card p-6'
+				className='card relative p-6'
 			>
 				<div className='flex items-center gap-4'>
 					<Link href='/'>
@@ -115,7 +115,7 @@ export default function Sidebar() {
 				initial={{ opacity: 0, x: -20 }}
 				animate={{ opacity: 1, x: 0 }}
 				transition={{ delay: 0.1 }}
-				className='card p-6'
+				className='card relative p-6'
 			>
 				<Clock />
 			</motion.div>
@@ -124,7 +124,7 @@ export default function Sidebar() {
 				initial={{ opacity: 0, x: -20 }}
 				animate={{ opacity: 1, x: 0 }}
 				transition={{ delay: 0.2 }}
-				className='card p-5'
+				className='card relative p-5'
 			>
 				<Calendar />
 			</motion.div>
