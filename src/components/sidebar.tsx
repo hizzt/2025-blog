@@ -1,9 +1,14 @@
 'use client'
 
+import { useState, useEffect } from 'react'
 import { motion } from 'motion/react'
 import { useConfigStore } from '@/app/(home)/stores/config-store'
 import Link from 'next/link'
 import Image from 'next/image'
+import dayjs from 'dayjs'
+import 'dayjs/locale/zh-cn'
+
+dayjs.locale('zh-cn')
 
 function getGreeting() {
 	const hour = new Date().getHours()
@@ -13,6 +18,68 @@ function getGreeting() {
 	return '夜深了'
 }
 
+function Clock() {
+	const [time, setTime] = useState(new Date())
+
+	useEffect(() => {
+		const timer = setInterval(() => setTime(new Date()), 1000)
+		return () => clearInterval(timer)
+	}, [])
+
+	const hours = time.getHours().toString().padStart(2, '0')
+	const minutes = time.getMinutes().toString().padStart(2, '0')
+	const seconds = time.getSeconds().toString().padStart(2, '0')
+
+	return (
+		<div className='font-mono text-3xl font-light tracking-wider'>
+			<span>{hours}</span>
+			<span className='animate-pulse'>:</span>
+			<span>{minutes}</span>
+			<span className='text-secondary text-xl'>:{seconds}</span>
+		</div>
+	)
+}
+
+function Calendar() {
+	const now = dayjs()
+	const currentDate = now.date()
+	const firstDayOfMonth = now.startOf('month')
+	const firstDayWeekday = (firstDayOfMonth.day() + 6) % 7
+	const daysInMonth = now.daysInMonth()
+	const currentWeekday = (now.day() + 6) % 7
+
+	const weekdays = ['一', '二', '三', '四', '五', '六', '日']
+
+	return (
+		<div>
+			<div className='text-secondary mb-2 text-sm'>
+				{now.format('YYYY年M月D日')} {now.format('dddd')}
+			</div>
+			<div className='grid grid-cols-7 gap-1 text-center text-xs'>
+				{weekdays.map((day, i) => (
+					<div key={day} className={`py-1 font-medium ${i === currentWeekday ? 'text-brand' : 'text-secondary'}`}>
+						{day}
+					</div>
+				))}
+				{Array.from({ length: firstDayWeekday }).map((_, i) => (
+					<div key={`empty-${i}`} />
+				))}
+				{Array.from({ length: daysInMonth }).map((_, i) => {
+					const day = i + 1
+					return (
+						<div
+							key={day}
+							className={`rounded py-1 ${day === currentDate ? 'bg-brand font-medium text-white' : 'hover:bg-white/60'}`}
+						>
+							{day}
+						</div>
+					)
+				})}
+			</div>
+		</div>
+	)
+}
+
 export default function Sidebar() {
 	const { siteContent } = useConfigStore()
 	const greeting = getGreeting()
@@ -20,55 +87,53 @@ export default function Sidebar() {
 	const beian = siteContent.beian
 
 	return (
-		<aside className='w-[280px] shrink-0 space-y-4 max-lg:hidden'>
+		<aside className='w-[260px] shrink-0 space-y-4 max-lg:hidden'>
 			<motion.div
 				initial={{ opacity: 0, x: -20 }}
 				animate={{ opacity: 1, x: 0 }}
-				className='card p-6 text-center'
+				className='card p-5'
 			>
-				<Link href='/'>
-					<Image
-						src='/images/avatar.png'
-						alt='avatar'
-						width={80}
-						height={80}
-						className='mx-auto rounded-full'
-						style={{ boxShadow: '0 12px 20px -5px #E2D9CE' }}
-					/>
-				</Link>
-				<h2 className='font-averia mt-3 text-xl font-medium'>{username}</h2>
-				<p className='text-secondary mt-1 text-sm'>{greeting}</p>
+				<div className='flex items-center gap-4'>
+					<Link href='/'>
+						<Image
+							src='/images/avatar.png'
+							alt='avatar'
+							width={56}
+							height={56}
+							className='rounded-full'
+							style={{ boxShadow: '0 8px 16px -4px #E2D9CE' }}
+						/>
+					</Link>
+					<div>
+						<div className='text-secondary text-sm'>{greeting}</div>
+						<div className='font-averia text-lg font-medium'>I'm {username}</div>
+					</div>
+				</div>
 			</motion.div>
 
 			<motion.div
 				initial={{ opacity: 0, x: -20 }}
 				animate={{ opacity: 1, x: 0 }}
 				transition={{ delay: 0.1 }}
+				className='card p-5'
+			>
+				<Clock />
+			</motion.div>
+
+			<motion.div
+				initial={{ opacity: 0, x: -20 }}
+				animate={{ opacity: 1, x: 0 }}
+				transition={{ delay: 0.2 }}
 				className='card p-4'
 			>
-				<div className='text-secondary mb-3 text-xs uppercase tracking-wider'>导航</div>
-				<nav className='space-y-1'>
-					{[
-						{ href: '/blog', label: '近期文章' },
-						{ href: '/projects', label: '项目展示' },
-						{ href: '/about', label: '关于本站' }
-					].map(item => (
-						<Link
-							key={item.href}
-							href={item.href}
-							className='text-secondary hover:text-brand block rounded-lg px-3 py-2 text-sm transition-colors hover:bg-white/60'
-						>
-							{item.label}
-						</Link>
-					))}
-				</nav>
+				<Calendar />
 			</motion.div>
 
 			{beian?.text && (
 				<motion.div
 					initial={{ opacity: 0, x: -20 }}
 					animate={{ opacity: 1, x: 0 }}
-					transition={{ delay: 0.2 }}
+					transition={{ delay: 0.3 }}
 					className='text-secondary text-center text-xs'
 				>
 					{beian.link ? (
