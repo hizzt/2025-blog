@@ -32,22 +32,10 @@ const list = [
 		href: '/blog'
 	},
 	{
-		icon: ProjectsOutlineSVG,
-		iconActive: ProjectsFilledSVG,
-		label: '项目',
-		href: '/projects'
-	},
-	{
 		icon: AboutOutlineSVG,
 		iconActive: AboutFilledSVG,
 		label: '关于',
 		href: '/about'
-	},
-	{
-		icon: ShareOutlineSVG,
-		iconActive: ShareFilledSVG,
-		label: '分享',
-		href: '/share'
 	}
 ]
 
