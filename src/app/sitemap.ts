@@ -16,7 +16,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 	let posts: BlogIndexItem[] = blogIndex
 
 	const postEntries: MetadataRoute.Sitemap = posts.map(post => ({
-		url: `${baseUrl}/blog/${post.slug}`,
+			url: `${baseUrl}/notes/${post.slug}`,
 		lastModified: post.date ? new Date(post.date) : new Date(),
 		changeFrequency: 'weekly',
 		priority: 0.8

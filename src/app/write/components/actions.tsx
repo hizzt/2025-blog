@@ -28,7 +28,7 @@ export function WriteActions() {
 			return
 		}
 		if (mode === 'edit' && originalSlug) {
-			router.push(`/blog/${originalSlug}`)
+			router.push(`/notes/${originalSlug}`)
 		} else {
 			router.push('/')
 		}

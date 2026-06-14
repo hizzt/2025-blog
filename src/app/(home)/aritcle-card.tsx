@@ -39,7 +39,7 @@ export default function ArticleCard() {
 						<span className='text-secondary text-xs'>加载中...</span>
 					</div>
 				) : blog ? (
-					<Link href={`/blog/${blog.slug}`} className='flex transition-opacity hover:opacity-80'>
+					<Link href={`/notes/${blog.slug}`} className='flex transition-opacity hover:opacity-80'>
 						{blog.cover ? (
 							<img src={blog.cover} alt='cover' className='mr-3 h-12 w-12 shrink-0 rounded-xl border object-cover' />
 						) : (

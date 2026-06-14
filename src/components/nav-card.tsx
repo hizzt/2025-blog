@@ -29,7 +29,7 @@ const list = [
 		icon: ScrollOutlineSVG,
 		iconActive: ScrollFilledSVG,
 		label: '文章',
-		href: '/blog'
+		href: '/notes'
 	},
 	{
 		icon: AboutOutlineSVG,

@@ -63,7 +63,7 @@ const buildEnclosure = (cover?: string): string | null => {
 }
 
 const serializeItem = (item: BlogIndexItem): string => {
-	const link = `${SITE_ORIGIN}/blog/${item.slug}`
+	const link = `${SITE_ORIGIN}/notes/${item.slug}`
 	const title = escapeXml(item.title || item.slug)
 	const description = wrapCdata(item.summary || '')
 	const pubDate = new Date(item.date).toUTCString()

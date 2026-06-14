@@ -403,7 +403,7 @@ export default function BlogPage() {
 										<Link
 											onMouseEnter={() => onCoverLinkMouseEnter(it.cover)}
 											onMouseLeave={cancelCoverPreview}
-											href={`/blog/${it.slug}`}
+											href={`/notes/${it.slug}`}
 											key={it.slug}
 											onClick={event => handleItemClick(event, it.slug)}
 											className={cn(
