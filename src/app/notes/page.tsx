@@ -460,6 +460,20 @@ export default function BlogPage() {
 							className='text-secondary text-xs'>
 							共 {items.length} 篇文章
 						</motion.div>
+						{siteContent.beian?.text && (
+							<motion.div
+								initial={{ opacity: 0, scale: 0.6 }}
+								animate={{ opacity: 1, scale: 1 }}
+								className='text-secondary mt-3 text-xs'>
+								{siteContent.beian.link ? (
+									<a href={siteContent.beian.link} target='_blank' rel='noreferrer' className='hover:text-brand transition-colors'>
+										{siteContent.beian.text}
+									</a>
+								) : (
+									siteContent.beian.text
+								)}
+							</motion.div>
+						)}
 					</div>
 				)}
 				</div>

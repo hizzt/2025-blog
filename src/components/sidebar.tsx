@@ -84,7 +84,6 @@ export default function Sidebar() {
 	const { siteContent } = useConfigStore()
 	const greeting = getGreeting()
 	const username = siteContent.meta.username || '逐码'
-	const beian = siteContent.beian
 
 	return (
 		<aside className='w-[340px] shrink-0 space-y-6 max-lg:hidden'>
@@ -104,23 +103,6 @@ export default function Sidebar() {
 			>
 				<Calendar />
 			</motion.div>
-
-			{beian?.text && (
-				<motion.div
-					initial={{ opacity: 0, x: -20 }}
-					animate={{ opacity: 1, x: 0 }}
-					transition={{ delay: 0.3 }}
-					className='text-secondary text-center text-xs'
-				>
-					{beian.link ? (
-						<a href={beian.link} target='_blank' rel='noreferrer' className='hover:text-brand transition-colors'>
-							{beian.text}
-						</a>
-					) : (
-						beian.text
-					)}
-				</motion.div>
-			)}
 		</aside>
 	)
 }
